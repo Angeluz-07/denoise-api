@@ -40,15 +40,29 @@ def process_audio(audio_filepath):
     return denoised_filepath
 
 
-demo = gr.Interface(
-    title=f"<center><h1>Denoise API</h1>(v{VERSION})</center> ",
-    description='<p style="font-size: 20px; font-weight: 400;">Upload your voice record. You can test the app with the default example as well.<p>',
-    article="",
-    fn=process_audio,
-    inputs=[
-        gr.Audio(value=DEFAULT_EXAMPLE, label="Input Audio(*.m4a)", type="filepath")
-    ],
-    outputs=[gr.Audio(label="Output Audio(*.wav)")],
+theme = gr.themes.Default(
+    text_size=gr.themes.sizes.text_lg,  # Options: text_sm, text_md, text_lg
 )
 
-demo.launch(server_name="0.0.0.0", show_error=True)
+audio_demo = gr.Interface(
+    #title=f"<center><h1>Denoise API</h1>(v{VERSION})</center> ",
+    description='Upload your voice record. You can test the app with the default example as well.',
+    fn=process_audio,
+    inputs=gr.Audio(value=DEFAULT_EXAMPLE, label="Input Audio(*.m4a)", type="filepath"),
+    outputs=gr.Audio(label="Output Audio(*.wav)"),
+    title="Denoise API",
+)
+
+video_demo = gr.Interface(
+    description='Upload a video with audio noise. The output will be the same video with denoised audio.',
+    fn=process_audio,
+    inputs=gr.Video(label="Input Video"),
+    outputs=gr.Video(label="Output Video"),
+    title="Denoise API",
+)
+
+demo = gr.TabbedInterface(
+    [audio_demo, video_demo], ["Audio", "Video"]
+)
+
+demo.launch(server_name="0.0.0.0", show_error=True, theme=theme)
