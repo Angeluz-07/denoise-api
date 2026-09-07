@@ -1,0 +1,22 @@
+services:
+  denoise_api:
+    image: angeluz07/denoise-api:0.0.1
+    build:
+      context: .
+    container_name: denoise_api
+    ports:
+      - "7860:7860"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - UVICORN_RELOAD=${UVICORN_RELOAD:-true}
+    volumes:
+      - ./src:/app/src:z
+      - ./.data:/app/.data:z
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 0.5G
+        reservations:
+          cpus: "1"
+          memory: 0.5G

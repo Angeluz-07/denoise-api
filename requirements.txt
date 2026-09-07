@@ -1,0 +1,10 @@
+# audio manipulation
+pydub
+ffmpeg-python
+soundfile
+
+# ui
+gradio
+
+# other
+natsort
