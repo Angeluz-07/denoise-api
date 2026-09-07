@@ -1,2 +1,2 @@
-# cc-denoise
+# denoise-api
 agnostic denoise service
