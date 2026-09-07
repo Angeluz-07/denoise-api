@@ -23,7 +23,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Expose gradio port
+# Gradio port
 EXPOSE 7860 
 
-CMD ["sh", "-c", "gradio process_record_ui.py"]
+CMD ["python", "src/main.py"]

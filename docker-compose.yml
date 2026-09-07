@@ -8,10 +8,10 @@ services:
       - "7860:7860"
     environment:
       - PYTHONUNBUFFERED=1
-      - UVICORN_RELOAD=${UVICORN_RELOAD:-true}
     volumes:
       - ./src:/app/src:z
       - ./.data:/app/.data:z
+    command: ["gradio", "src/main.py"]
     deploy:
       resources:
         limits:

@@ -11,10 +11,12 @@ from process_record import (
 )
 from version import VERSION
 
-INPUT_AUDIOS_FOLDER = Path(__file__).parent / "input_audios"
+BASE_DIR = Path(__file__).parent.parent
+INPUT_AUDIOS_FOLDER = BASE_DIR / ".data" / "audios"
 INPUT_AUDIOS_FOLDER.mkdir(exist_ok=True)
 
-DEFAULT_EXAMPLE = Path(__file__).parent / ".data" / "example" / "Voz 070.m4a"
+DEFAULT_EXAMPLE = BASE_DIR / ".data" / "example" / "Voz 070.m4a"
+
 
 def process_audio(audio_filepath):
     # generate workdir folder
